@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'com.cleytonongaratto.desafio-anota-ai' is invalid and this project uses 'com.cleytonongaratto.desafio_anota_ai' instead.
+* The original package name 'com.cleytonongaratto.desafio-anota-ai' is invalid and this project uses 'com.cleytonongaratto.desafioanotaai' instead.
 
 # Getting Started
 

@@ -1,4 +1,4 @@
-package com.cleytonongaratto.desafio_anota_ai;
+package com.cleytonongaratto.desafioanotaai;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

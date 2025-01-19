@@ -1,4 +1,4 @@
-package com.cleytonongaratto.desafio_anota_ai;
+package com.cleytonongaratto.desafioanotaai;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
