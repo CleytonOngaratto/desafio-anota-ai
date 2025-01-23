@@ -47,4 +47,8 @@ public class CategoryService {
         this.repository.delete(retrieveCategory);
     }
 
+    public Optional<Category> getBydId(String id){
+        return this.repository.findById(id);
+    }
+
 }

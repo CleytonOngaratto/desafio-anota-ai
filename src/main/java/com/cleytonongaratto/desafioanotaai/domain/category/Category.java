@@ -1,15 +1,9 @@
 package com.cleytonongaratto.desafioanotaai.domain.category;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "categories")
-@Data
-@NoArgsConstructor
 public class Category {
 
     @Id
@@ -18,7 +12,17 @@ public class Category {
     private String description;
     private String ownerId;
 
-    public Category(CategoryDTO categoryDTO){
+    public Category(String id, String title, String description, String ownerId) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.ownerId = ownerId;
+    }
+
+    public Category() {
+    }
+
+    public Category(CategoryDTO categoryDTO) {
         this.title = categoryDTO.title();
         this.description = categoryDTO.description();
         this.ownerId = categoryDTO.ownerId();
@@ -38,5 +42,17 @@ public class Category {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public String getId() {
+        return id;
     }
 }

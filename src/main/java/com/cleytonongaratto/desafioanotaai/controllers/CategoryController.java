@@ -4,6 +4,7 @@ import com.cleytonongaratto.desafioanotaai.domain.category.Category;
 import com.cleytonongaratto.desafioanotaai.domain.category.CategoryDTO;
 import com.cleytonongaratto.desafioanotaai.repositories.CategoryRepository;
 import com.cleytonongaratto.desafioanotaai.service.CategoryService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,14 +33,14 @@ public class CategoryController {
     }
 
     @PutMapping("/{categoryId}")
-    public ResponseEntity<Category> update(@RequestParam("categoryId") String categoryId, @RequestBody CategoryDTO categoryData){
+    public ResponseEntity<Category> update(@PathVariable("categoryId") String categoryId, @RequestBody CategoryDTO categoryData){
         Category updatedCategory = this.service.update(categoryId, categoryData);
         return ResponseEntity.ok().body(updatedCategory);
 
     }
 
     @DeleteMapping("/{categoryId}")
-    public ResponseEntity<Category> delete(@RequestParam("categoryId") String categoryId){
+    public ResponseEntity<Category> delete(@PathVariable("categoryId") String categoryId){
         this.service.delete(categoryId);
         return ResponseEntity.noContent().build();
     }
