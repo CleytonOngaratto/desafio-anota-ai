@@ -6,6 +6,8 @@ import com.cleytonongaratto.desafioanotaai.domain.product.Product;
 import com.cleytonongaratto.desafioanotaai.domain.product.ProductDTO;
 import com.cleytonongaratto.desafioanotaai.domain.product.exceptions.ProductNotFoundException;
 import com.cleytonongaratto.desafioanotaai.repositories.ProductRepository;
+import com.cleytonongaratto.desafioanotaai.service.aws.AwsSnsService;
+import com.cleytonongaratto.desafioanotaai.service.aws.MessageDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,12 +15,14 @@ import java.util.List;
 @Service
 public class ProductService {
 
-    private ProductRepository repository;
-    private CategoryService categoryService;
+    private final ProductRepository repository;
+    private final CategoryService categoryService;
+    private final AwsSnsService snsService;
 
-    public ProductService(ProductRepository repository, CategoryService categoryService) {
+    public ProductService(ProductRepository repository, CategoryService categoryService, AwsSnsService snsService) {
         this.repository = repository;
         this.categoryService = categoryService;
+        this.snsService = snsService;
     }
 
     public Product insert(ProductDTO productData) {
@@ -27,7 +31,10 @@ public class ProductService {
                 .orElseThrow(CategoryNotFoundException::new);
         Product newProduct = new Product(productData);
         newProduct.setCategory(category);
+
         this.repository.save(newProduct);
+        this.snsService.publish(new MessageDTO(newProduct.getOwnerId()));
+
         return newProduct;
     }
 
@@ -50,6 +57,7 @@ public class ProductService {
 
 
         this.repository.save(retrieveProduct);
+        this.snsService.publish(new MessageDTO(retrieveProduct.getOwnerId()));
         return retrieveProduct;
     }
 
