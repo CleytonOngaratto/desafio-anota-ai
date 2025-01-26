@@ -13,12 +13,12 @@ public class Product {
     private String description;
     private String ownerId;
     private Integer price;
-    private Category category;
+    private String category;
 
     public Product() {
     }
 
-    public Product(String id, String title, String description, String ownerId, Integer price, Category category) {
+    public Product(String id, String title, String description, String ownerId, Integer price, String category) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -32,6 +32,7 @@ public class Product {
         this.description = productData.description();
         this.ownerId = productData.ownerId();
         this.price = productData.price();
+        this.category = productData.categoryId();
     }
 
     public String getTitle() {
@@ -58,11 +59,11 @@ public class Product {
         this.price = price;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
