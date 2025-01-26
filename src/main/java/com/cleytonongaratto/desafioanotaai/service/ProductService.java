@@ -32,7 +32,7 @@ public class ProductService {
         Product newProduct = new Product(productData);
 
         this.repository.save(newProduct);
-        this.snsService.publish(new MessageDTO(newProduct.getOwnerId()));
+        this.snsService.publish(new MessageDTO(newProduct.toString()));
 
         return newProduct;
     }
@@ -57,7 +57,7 @@ public class ProductService {
 
 
         this.repository.save(retrieveProduct);
-        this.snsService.publish(new MessageDTO(retrieveProduct.getOwnerId()));
+        this.snsService.publish(new MessageDTO(retrieveProduct.toString()));
         return retrieveProduct;
     }
 
