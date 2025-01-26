@@ -1,5 +1,6 @@
 package com.cleytonongaratto.desafioanotaai.domain.category;
 
+import org.json.JSONObject;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -54,5 +55,17 @@ public class Category {
 
     public String getId() {
         return id;
+    }
+
+    @Override
+    public String toString(){
+        JSONObject json = new JSONObject();
+        json.put("id", id);
+        json.put("title", title);
+        json.put("description", description);
+        json.put("ownerId", ownerId);
+        json.put("type", "categoria");
+
+        return json.toString();
     }
 }

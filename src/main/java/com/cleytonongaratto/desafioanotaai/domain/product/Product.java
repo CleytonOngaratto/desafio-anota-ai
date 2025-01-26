@@ -1,6 +1,7 @@
 package com.cleytonongaratto.desafioanotaai.domain.product;
 
 import com.cleytonongaratto.desafioanotaai.domain.category.Category;
+import org.json.JSONObject;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -77,5 +78,19 @@ public class Product {
 
     public void setOwnerId(String ownerId) {
         this.ownerId = ownerId;
+    }
+
+    @Override
+    public String toString(){
+        JSONObject json = new JSONObject();
+        json.put("id", id);
+        json.put("title", title);
+        json.put("description", description);
+        json.put("ownerId", ownerId);
+        json.put("price", price);
+        json.put("category", category);
+        json.put("type", "produto");
+
+        return json.toString();
     }
 }
